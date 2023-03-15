@@ -348,7 +348,7 @@ async function _isDeviceAuthorizedAsync(device: Device): Promise<boolean> {
 
 async function isInstalledAsync(device: Device, androidPackage: string): Promise<boolean> {
   const packages = await getAdbOutputAsync(
-    adbPidArgs(device.pid, 'shell', 'pm', 'list', 'packages', androidPackage)
+    adbPidArgs(device.pid, 'shell', 'pm', 'list', 'packages', "--user", "0", androidPackage)
   );
 
   const lines = packages.split(/\r?\n/);
